@@ -1299,7 +1299,74 @@ body::after {
   color: var(--vr-ink);
   display: grid; gap: 4px;
 }
+
+.route-error {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: var(--vr-cloud);
+  color: var(--vr-black);
+}
+.route-error__panel {
+  width: min(560px, 100%);
+  border: 2px solid var(--vr-black);
+  background: #fff;
+  padding: 24px;
+  box-shadow: 8px 8px 0 var(--vr-yellow);
+  font-family: var(--mono);
+}
+.route-error__tag {
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.22em;
+  color: var(--vr-yellow-deep);
+  margin-bottom: 12px;
+}
+.route-error h1 {
+  font-family: var(--display);
+  font-size: clamp(36px, 8vw, 72px);
+  line-height: 0.9;
+  margin: 0 0 12px;
+}
+.route-error p {
+  margin: 0 0 18px;
+  line-height: 1.5;
+}
+.route-error button,
+.route-error a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  padding: 10px 14px;
+  border: 1.5px solid var(--vr-black);
+  background: var(--vr-yellow);
+  color: var(--vr-black);
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.18em;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: 3px 3px 0 var(--vr-black);
+}
 .claim__notes .li::before { content: '> '; color: var(--vr-yellow-deep); }
+.claim__note-btn {
+  margin-top: 4px;
+  width: 100%;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.18em;
+  color: var(--vr-black);
+  background: var(--vr-yellow);
+  border: 1.5px solid var(--vr-black);
+  padding: 10px 12px;
+  cursor: pointer;
+  box-shadow: 3px 3px 0 var(--vr-black);
+}
+.claim__note-btn:hover { background: #fff; }
 
 /* side stack */
 .claim__side { display: flex; flex-direction: column; gap: 18px; }
@@ -6574,6 +6641,41 @@ body::after {
   filter: drop-shadow(0 0 30px rgba(255,232,0,0.7)) drop-shadow(0 0 80px rgba(255,232,0,0.4));
   animation: mc-smiley-pulse 0.45s ease-in-out infinite alternate;
 }
+.mc-drop-art {
+  position: relative;
+  z-index: 1;
+  width: clamp(220px, 34vw, 440px);
+  aspect-ratio: 1;
+  background: var(--vr-black);
+  border: 2px solid var(--vr-yellow);
+  box-shadow:
+    0 0 0 1px var(--vr-black),
+    10px 10px 0 var(--vr-yellow),
+    0 0 52px rgba(255,232,0,0.55);
+  overflow: hidden;
+  animation: mc-smiley-pulse 0.45s ease-in-out infinite alternate;
+}
+.mc-drop-art::after {
+  content: "MINTED NFT";
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+  z-index: 2;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.24em;
+  color: var(--vr-black);
+  background: var(--vr-yellow);
+  padding: 6px 8px;
+  border: 1px solid var(--vr-black);
+}
+.mc-drop-art__img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  image-rendering: auto;
+}
 .mc-smiley__face {
   display: block;
   width: 100%;
@@ -6724,15 +6826,47 @@ body::after {
   z-index: 1;
 }
 .mc-ticket__edition {
+  display: grid;
+  justify-items: center;
+  gap: 8px;
+  margin: 6px 0 2px;
+  position: relative;
+  z-index: 1;
+}
+.mc-ticket__edition-mark {
   display: flex;
   align-items: baseline;
   justify-content: center;
   gap: 6px;
   font-family: var(--display, var(--mono));
   line-height: 0.9;
-  margin: 6px 0 2px;
+}
+.mc-ticket__art {
+  width: min(210px, 58vw);
+  aspect-ratio: 1;
   position: relative;
-  z-index: 1;
+  border: 2px solid var(--vr-black);
+  background: var(--vr-black);
+  box-shadow: 4px 4px 0 var(--vr-yellow);
+  overflow: hidden;
+}
+.mc-ticket__art img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.mc-ticket__art-chip {
+  position: absolute;
+  left: 8px;
+  bottom: 8px;
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: 0.24em;
+  color: var(--vr-black);
+  background: var(--vr-yellow);
+  border: 1px solid var(--vr-black);
+  padding: 4px 6px;
 }
 .mc-ticket__edition-slash {
   font-size: clamp(28px, 5vw, 44px);
@@ -7055,6 +7189,7 @@ body::after {
   .mc-stamp__value { word-break: break-all; max-width: 60%; text-align: right; }
 
   /* Act 3 drop */
+  .mc-drop-art { width: clamp(190px, 62vw, 320px); }
   .mc-drop-edition__num { font-size: clamp(64px, 22vw, 140px); }
   .mc-drop-edition__label { font-size: 11px; }
   .mc-drop-edition__total { font-size: 20px; }
@@ -7070,6 +7205,7 @@ body::after {
     padding: 16px 16px 70px;
     box-shadow: 5px 5px 0 var(--vr-yellow), 5px 5px 0 1.5px var(--vr-black);
   }
+  .mc-ticket__art { width: min(150px, 42vw); }
   .mc-ticket__head { font-size: 8px; letter-spacing: 0.16em; }
   .mc-ticket__edition-num { font-size: clamp(48px, 18vw, 80px); }
   .mc-ticket__edition-slash { font-size: clamp(22px, 8vw, 36px); }

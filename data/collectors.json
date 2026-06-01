@@ -10,7 +10,7 @@
     },
     {
       "tokenId": 2,
-      "owner": "0xAe6b19b637FDCB9c5C05238E5279754C39DE76A9"
+      "owner": "0x7cB75Ea73e219fDbA24B45966fd9ec0780Fb7229"
     },
     {
       "tokenId": 3,
@@ -139,9 +139,61 @@
     {
       "tokenId": 34,
       "owner": "0xCa4c02922C98b58F9b341D41540Bf98850d3Df78"
+    },
+    {
+      "tokenId": 35,
+      "owner": "0xEB62960cD9D5b84098b766E43c24018829A37457"
+    },
+    {
+      "tokenId": 36,
+      "owner": "0xEB62960cD9D5b84098b766E43c24018829A37457"
+    },
+    {
+      "tokenId": 37,
+      "owner": "0xEB62960cD9D5b84098b766E43c24018829A37457"
+    },
+    {
+      "tokenId": 38,
+      "owner": "0xEB1F379c1aCeeCDd3A52CcbE856a7872475b31cB"
+    },
+    {
+      "tokenId": 39,
+      "owner": "0xE9Fa97395727e91e3d7f6f3bB420e49509A98dd9"
+    },
+    {
+      "tokenId": 40,
+      "owner": "0x633Ecf099E1bb1C6ec04d8dC63Da74bAE7646CA9"
+    },
+    {
+      "tokenId": 41,
+      "owner": "0x3b14F4C0BAdEd2ef78C779Ea5a76CeFcEd3BbDfa"
+    },
+    {
+      "tokenId": 42,
+      "owner": "0xBbd9870b8128a355dc6200abB6C948002ae7049b"
+    },
+    {
+      "tokenId": 43,
+      "owner": "0x72BEA315EA96C24af722216Eb2aC92AD05a8B702"
+    },
+    {
+      "tokenId": 44,
+      "owner": "0xae260A3777C70d5ea3cAccF6E3BB72DDd65dB32f"
+    },
+    {
+      "tokenId": 45,
+      "owner": "0x36D983f2ED65629118e7B6c093719e371A06E4ac"
+    },
+    {
+      "tokenId": 46,
+      "owner": "0xf4E23AB731c72c3a4Ce19C0F0051b2863257B1F5"
+    },
+    {
+      "tokenId": 47,
+      "owner": "0x7aFB9738Dc63F9B801057605197bAE225D931E12"
     }
   ],
-  "totalClaimed": 35,
-  "fetchedAt": 1779397950728,
+  "totalClaimed": 48,
+  "fetchedAt": 1780297151817,
   "seeded": true
 }

@@ -9,6 +9,7 @@ import {
   getStoredMute,
   type MintAudioController,
 } from "@/lib/mintAudio";
+import { getVr303Artwork } from "@/lib/vr303Artwork";
 import {
   RAVE_BAR_SEC,
   RAVE_BEAT_SEC,
@@ -600,6 +601,8 @@ function StampLine({
 }
 
 function Act3({ edition }: { edition: number }) {
+  const artworkUrl = edition > 0 ? getVr303Artwork(edition - 1) : undefined;
+
   return (
     <motion.div
       key="act3"
@@ -611,12 +614,17 @@ function Act3({ edition }: { edition: number }) {
     >
       <div className="mc-drop-flash" />
       <motion.div
-        className="mc-drop-smiley"
+        className={artworkUrl ? "mc-drop-art" : "mc-drop-smiley"}
         initial={{ scale: 0, rotate: -180 }}
         animate={{ scale: 1, rotate: 0 }}
         transition={{ duration: 0.6, type: "spring", stiffness: 200, damping: 12 }}
       >
-        <img src="/smiley/face.png" alt="" className="mc-smiley__face" />
+        {artworkUrl ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img src={artworkUrl} alt={`VR 303 edition ${edition}`} className="mc-drop-art__img" />
+        ) : (
+          <img src="/smiley/face.png" alt="" className="mc-smiley__face" />
+        )}
       </motion.div>
       <div className="mc-drop-edition">
         <span className="mc-drop-edition__label">EDITION</span>
@@ -705,6 +713,7 @@ function Act4Ticket({
     hour12: false,
   });
   const editionStr = String(ctx.edition).padStart(3, "0");
+  const artworkUrl = ctx.edition > 0 ? getVr303Artwork(ctx.edition - 1) : undefined;
   return (
     <motion.div
       key="act4"
@@ -755,9 +764,18 @@ function Act4Ticket({
         </div>
 
         <div className="mc-ticket__edition">
-          <span className="mc-ticket__edition-slash">/</span>
-          <span className="mc-ticket__edition-num">{editionStr}</span>
-          <span className="mc-ticket__edition-slash">/</span>
+          {artworkUrl ? (
+            <div className="mc-ticket__art">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={artworkUrl} alt={`VR 303 edition ${ctx.edition}`} />
+              <span className="mc-ticket__art-chip">YOUR NFT</span>
+            </div>
+          ) : null}
+          <div className="mc-ticket__edition-mark">
+            <span className="mc-ticket__edition-slash">/</span>
+            <span className="mc-ticket__edition-num">{editionStr}</span>
+            <span className="mc-ticket__edition-slash">/</span>
+          </div>
         </div>
         <div className="mc-ticket__edition-cap">edition · 303 / 303 supply</div>
 

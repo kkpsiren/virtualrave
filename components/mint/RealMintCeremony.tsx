@@ -68,6 +68,7 @@ export function RealMintCeremony({
   const txHashSetAt = useRef<number | null>(null);
   const receiptHandledAt = useRef<number | null>(null);
   const dropTimerStarted = useRef(false);
+  const wasOpenRef = useRef(false);
 
   const { data: chainReceipt, isSuccess: chainReceiptOk, isError: chainReceiptErr } =
     useWaitForTransactionReceipt({
@@ -80,6 +81,18 @@ export function RealMintCeremony({
     : chainReceipt;
   const receiptOk = simulatedReceipt ? simulatedReceipt.ok : chainReceiptOk;
   const receiptErr = simulatedReceipt?.error ?? chainReceiptErr;
+
+  useEffect(() => {
+    if (open && !wasOpenRef.current) {
+      setAct(txHash ? 1 : 0);
+      setLatestBlock(null);
+      setConfirmBlocks(null);
+      txHashSetAt.current = txHash ? performance.now() : null;
+      receiptHandledAt.current = null;
+      dropTimerStarted.current = false;
+    }
+    wasOpenRef.current = open;
+  }, [open, txHash]);
 
   // ---- Block-by-block telemetry while waiting for the receipt ----
   useEffect(() => {
@@ -137,10 +150,10 @@ export function RealMintCeremony({
         receiptHandledAt.current = performance.now();
       }
       if (since < minWait) {
-        // Race: receipt came in faster than our decrypt animation. Park in Act 2
-        // long enough to honor the choreography, then advance to drop.
+        // Race: receipt came in faster than our decrypt animation. Keep the
+        // decrypt act visible long enough, then advance to the drop.
         const wait = minWait - since;
-        setAct(2);
+        setAct(1);
         let act4Id: number | null = null;
         const id = window.setTimeout(() => {
           setAct(3);

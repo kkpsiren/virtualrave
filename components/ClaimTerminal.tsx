@@ -677,6 +677,7 @@ export function ClaimTerminal({ onConnect, orbSession, onMintSuccess }: ClaimTer
 
     setTxStatus("busy");
     setStep("BUILDING ACTION...");
+    setTxHash(null);
 
     // === MINT CEREMONY OPENS HERE ===
     // The moment we commit to broadcasting, the ceremony takes over the page.
@@ -1057,8 +1058,16 @@ export function ClaimTerminal({ onConnect, orbSession, onMintSuccess }: ClaimTer
         </div>
 
         {txStatus === "success" ? (
-          <button className="btn-claim is-success" onClick={reset}>
-            <span>COLLECTED. VR 303 SECURED.</span>
+          <button
+            className="btn-claim is-success"
+            onClick={() => {
+              setCeremonyRect(null);
+              setCeremonyError(null);
+              setCeremonyOpen(true);
+            }}
+            disabled={!txHash}
+          >
+            <span>REPLAY MINT CEREMONY</span>
             <span className="arr"></span>
           </button>
         ) : (
@@ -1102,8 +1111,11 @@ export function ClaimTerminal({ onConnect, orbSession, onMintSuccess }: ClaimTer
           {txStatus === "success" ? (
             <>
               <div className="li">TX HASH  <strong>{step}</strong></div>
-              <div className="li">YOUR VR 303 IS ON LENS.</div>
+              <div className="li">YOUR VR 303 IS ON LENS. THE FINALE SHOWS YOUR MINTED ART.</div>
               <div className="li">CHECK LENSCAN, OPENSEA, OR FAMILY.</div>
+              <button type="button" className="claim__note-btn" onClick={reset}>
+                COLLECT ANOTHER
+              </button>
             </>
           ) : txStatus === "error" ? (
             <>
