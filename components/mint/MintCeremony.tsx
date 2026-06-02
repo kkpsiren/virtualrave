@@ -32,6 +32,7 @@ export interface CeremonyContext {
   lensAddress?: string | null;
   txHash: string | null;
   blockNumber: number | null;
+  mintedAt?: number | null;
   errorMessage: string | null;
 }
 
@@ -212,7 +213,7 @@ export function MintCeremony({ open, act, ctx, buttonRect, onClose, liveLog }: M
   }, [open]);
 
   // trigger drop when act 3 starts
-  const lastActRef = useRef<CeremonyAct>(act);
+  const lastActRef = useRef<CeremonyAct | null>(null);
   useEffect(() => {
     if (act === 3 && lastActRef.current !== 3) {
       audio?.triggerDrop();
@@ -702,12 +703,13 @@ function Act4Ticket({
   onTearEnd: () => void;
   onClose: () => void;
 }) {
-  const date = new Date().toLocaleDateString("en-US", {
+  const mintedAt = ctx.mintedAt ? new Date(ctx.mintedAt) : new Date();
+  const mintDate = mintedAt.toLocaleDateString("en-US", {
     year: "numeric",
     month: "2-digit",
     day: "2-digit",
   });
-  const time = new Date().toLocaleTimeString("en-US", {
+  const mintTime = mintedAt.toLocaleTimeString("en-US", {
     hour: "2-digit",
     minute: "2-digit",
     hour12: false,
@@ -795,7 +797,7 @@ function Act4Ticket({
           )}
           <TicketRow label="CHAIN" value="LENS // 232" />
           <TicketRow label="BLOCK" value={ctx.blockNumber !== null ? `#${ctx.blockNumber}` : "—"} />
-          <TicketRow label="DATE" value={`${date}  ${time}`} />
+          <TicketRow label="DATE" value={`${mintDate}  ${mintTime}`} />
         </div>
 
         <div className="mc-ticket__hash-section">

@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "upload:grove": "node scripts/upload-grove-audio.mjs",
-    "build:artwork-map": "node scripts/build-artwork-map.mjs"
+    "build:artwork-map": "node scripts/build-artwork-map.mjs",
+    "build:mint-cache": "node scripts/build-mint-cache.mjs"
   },
   "dependencies": {
     "@lens-chain/sdk": "^1.0.3",

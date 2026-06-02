@@ -1,6 +1,6 @@
 import { promises as fs } from "node:fs";
 import path from "node:path";
-import { createPublicClient, http, parseAbiItem, zeroAddress, type Address } from "viem";
+import { createPublicClient, decodeEventLog, http, parseAbiItem, zeroAddress, type Address } from "viem";
 import { lensServerChain, SERVER_CONTRACT } from "@/lib/lensChain";
 import { VR303_DEPLOY_BLOCK } from "@/lib/vr303Constants";
 
@@ -20,9 +20,26 @@ export type CollectorMetadata = {
   compiler: string;
 };
 
+export type CollectorMintReceipt = {
+  chainId: number;
+  contract: Address;
+  tokenId: number;
+  edition: number;
+  transactionHash: `0x${string}`;
+  blockNumber: number;
+  blockHash: `0x${string}`;
+  transactionIndex: number;
+  logIndex: number;
+  from: Address;
+  to: Address;
+  mintedAt: number;
+  mintedAtIso: string;
+};
+
 export type CollectorRecord = {
   tokenId: number;
   owner: Address;
+  mint?: CollectorMintReceipt;
   metadata?: CollectorMetadata;
 };
 
@@ -105,6 +122,26 @@ function isCollectorMetadata(item: unknown): item is CollectorMetadata {
   );
 }
 
+function isCollectorMintReceipt(item: unknown): item is CollectorMintReceipt {
+  const candidate = item as Partial<CollectorMintReceipt> | null;
+  return Boolean(
+    candidate &&
+      typeof candidate.chainId === "number" &&
+      typeof candidate.contract === "string" &&
+      typeof candidate.tokenId === "number" &&
+      typeof candidate.edition === "number" &&
+      typeof candidate.transactionHash === "string" &&
+      typeof candidate.blockNumber === "number" &&
+      typeof candidate.blockHash === "string" &&
+      typeof candidate.transactionIndex === "number" &&
+      typeof candidate.logIndex === "number" &&
+      typeof candidate.from === "string" &&
+      typeof candidate.to === "string" &&
+      typeof candidate.mintedAt === "number" &&
+      typeof candidate.mintedAtIso === "string",
+  );
+}
+
 function ingestMetadataPayload(parsed: unknown, metadataByEdition: Map<number, CollectorMetadata>) {
   if (Array.isArray(parsed)) {
     for (const item of parsed) {
@@ -161,9 +198,53 @@ function normalizeCollectors(collectors: CollectorRecord[]): CollectorRecord[] {
     byToken.set(record.tokenId, {
       tokenId: record.tokenId,
       owner: record.owner,
+      ...(isCollectorMintReceipt(record.mint) ? { mint: record.mint } : {}),
     });
   }
   return [...byToken.values()].sort((a, b) => a.tokenId - b.tokenId);
+}
+
+async function readMintReceiptsFromTransferLogs(
+  client: ReturnType<typeof makeClient>,
+): Promise<Map<number, CollectorMintReceipt>> {
+  const logs = await client.getLogs({
+    address: SERVER_CONTRACT,
+    event: TRANSFER_EVENT,
+    fromBlock: VR303_DEPLOY_BLOCK,
+    toBlock: "latest",
+  });
+
+  const mintLogs = logs.filter(
+    (log) => log.args.from?.toLowerCase() === zeroAddress && log.args.tokenId !== undefined && log.args.to,
+  );
+  const blockTimestamps = new Map<bigint, number>();
+  const receipts = new Map<number, CollectorMintReceipt>();
+
+  for (const log of mintLogs) {
+    if (!blockTimestamps.has(log.blockNumber)) {
+      const block = await client.getBlock({ blockNumber: log.blockNumber });
+      blockTimestamps.set(log.blockNumber, Number(block.timestamp) * 1000);
+    }
+    const mintedAt = blockTimestamps.get(log.blockNumber) ?? 0;
+    const tokenId = Number(log.args.tokenId);
+    receipts.set(tokenId, {
+      chainId: lensServerChain.id,
+      contract: SERVER_CONTRACT,
+      tokenId,
+      edition: tokenId + 1,
+      transactionHash: log.transactionHash,
+      blockNumber: Number(log.blockNumber),
+      blockHash: log.blockHash,
+      transactionIndex: log.transactionIndex,
+      logIndex: log.logIndex,
+      from: log.args.from as Address,
+      to: log.args.to as Address,
+      mintedAt,
+      mintedAtIso: new Date(mintedAt).toISOString(),
+    });
+  }
+
+  return receipts;
 }
 
 async function scanAllOwners(): Promise<CollectorRecord[]> {
@@ -230,8 +311,14 @@ async function readCollectorsFromTransferLogs(): Promise<CollectorRecord[]> {
 
 async function rebuildAndPersist(): Promise<CollectorsResponse> {
   const collectors = await scanAllOwners();
+  const mintReceipts = await readMintReceiptsFromTransferLogs(makeClient());
   const state = {
-    collectors: normalizeCollectors(collectors),
+    collectors: normalizeCollectors(
+      collectors.map((collector) => ({
+        ...collector,
+        mint: mintReceipts.get(collector.tokenId),
+      })),
+    ),
     totalClaimed: collectors.length,
     fetchedAt: Date.now(),
     seeded: true,
@@ -259,6 +346,7 @@ export async function readCollectors(): Promise<CollectorsResponse> {
 export async function refreshFromChain(): Promise<CollectorsResponse> {
   const client = makeClient();
   const totalClaimed = await readTotalClaimed(client);
+  const mintReceipts = await readMintReceiptsFromTransferLogs(client);
   const ids = Array.from({ length: totalClaimed }, (_, i) => i);
   const BATCH = 25;
   const collectors: CollectorRecord[] = [];
@@ -283,7 +371,10 @@ export async function refreshFromChain(): Promise<CollectorsResponse> {
   }
   const normalized = normalizeCollectors(collectors);
   const nextState = {
-    collectors: normalized,
+    collectors: normalized.map((collector) => ({
+      ...collector,
+      mint: mintReceipts.get(collector.tokenId),
+    })),
     totalClaimed,
     fetchedAt: Date.now(),
     seeded: true,
@@ -294,6 +385,58 @@ export async function refreshFromChain(): Promise<CollectorsResponse> {
   return {
     collectors: enrichCollectors(normalized, metadataByEdition),
     totalClaimed,
+    fetchedAt: nextState.fetchedAt,
+  };
+}
+
+export async function recordTransferFromReceipt(
+  txHash: `0x${string}`,
+  expectedTokenId: number,
+): Promise<CollectorsResponse> {
+  const client = makeClient();
+  const receipt = await client.getTransactionReceipt({ hash: txHash });
+  let nextOwner: Address | null = null;
+
+  for (const log of receipt.logs) {
+    if (log.address.toLowerCase() !== SERVER_CONTRACT.toLowerCase()) continue;
+    try {
+      const decoded = decodeEventLog({
+        abi: [TRANSFER_EVENT],
+        data: log.data,
+        topics: log.topics,
+      });
+      const tokenId = Number(decoded.args.tokenId);
+      if (tokenId !== expectedTokenId) continue;
+      const to = decoded.args.to as Address | undefined;
+      if (!to || to.toLowerCase() === zeroAddress) continue;
+      nextOwner = to;
+    } catch {
+      // Ignore non-Transfer logs from the same transaction.
+    }
+  }
+
+  if (!nextOwner) {
+    throw new Error(`No VR303 Transfer log found for token ${expectedTokenId} in ${txHash}`);
+  }
+
+  const state = await readJson();
+  const collectors = normalizeCollectors(state.collectors).map((collector) =>
+    collector.tokenId === expectedTokenId
+      ? { ...collector, owner: nextOwner }
+      : collector,
+  );
+  const nextState = {
+    collectors,
+    totalClaimed: state.totalClaimed || collectors.length,
+    fetchedAt: Date.now(),
+    seeded: true,
+  };
+  await writeJson(nextState);
+
+  const metadataByEdition = await readMetadataJson();
+  return {
+    collectors: enrichCollectors(collectors, metadataByEdition),
+    totalClaimed: nextState.totalClaimed,
     fetchedAt: nextState.fetchedAt,
   };
 }

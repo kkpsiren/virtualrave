@@ -47,7 +47,11 @@ export default function Home() {
         orbSession={orbSession}
         onMintSuccess={() => setMintTick((t) => t + 1)}
       />
-      <CollectorsWall mintTick={mintTick} />
+      <CollectorsWall
+        mintTick={mintTick}
+        orbSession={orbSession}
+        onConnect={onConnect}
+      />
       <CC0Guide />
       <StudioSection bridgeRef={bridgeRef} />
       <MixtapeSection bridgeRef={bridgeRef} audio={mixtapeAudio} />

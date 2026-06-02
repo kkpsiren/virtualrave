@@ -197,6 +197,7 @@ export function RealMintCeremony({
       lensAddress,
       txHash,
       blockNumber: liveBlock,
+      mintedAt: null,
       errorMessage,
     }),
     [edition, wallet, lensHandle, lensAddress, txHash, liveBlock, errorMessage],

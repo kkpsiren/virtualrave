@@ -2,198 +2,918 @@
   "collectors": [
     {
       "tokenId": 0,
-      "owner": "0xAe6b19b637FDCB9c5C05238E5279754C39DE76A9"
+      "owner": "0xAe6b19b637FDCB9c5C05238E5279754C39DE76A9",
+      "mint": {
+        "chainId": 232,
+        "contract": "0x303AC1D2736C70A9BaE4FC46aAe1c6Ed41C629Af",
+        "tokenId": 0,
+        "edition": 1,
+        "transactionHash": "0x3063abb82c92e00412833818e533389a56ae92b9c9d747a467299dabba8c87bb",
+        "blockNumber": 5858733,
+        "blockHash": "0xbec0051b7e3bc6950356ae814790a2da58fe8993c50bc03c037313e3636dfa62",
+        "transactionIndex": 0,
+        "logIndex": 3,
+        "from": "0x0000000000000000000000000000000000000000",
+        "to": "0xAe6b19b637FDCB9c5C05238E5279754C39DE76A9",
+        "mintedAt": 1779165661000,
+        "mintedAtIso": "2026-05-19T04:41:01.000Z"
+      }
     },
     {
       "tokenId": 1,
-      "owner": "0xAe6b19b637FDCB9c5C05238E5279754C39DE76A9"
+      "owner": "0xdF636a9cEAF2B9EEE3f0527BE9FcaE95b7B115fF",
+      "mint": {
+        "chainId": 232,
+        "contract": "0x303AC1D2736C70A9BaE4FC46aAe1c6Ed41C629Af",
+        "tokenId": 1,
+        "edition": 2,
+        "transactionHash": "0x15c334f13c1d3ed8e03a79b3af1aa63b806cfb876658a0d11d4d9a0805362037",
+        "blockNumber": 5862592,
+        "blockHash": "0x8d1f542d0b9402ac23e463034eee45966f18ee1bc86d4b7face69695f88a94b8",
+        "transactionIndex": 0,
+        "logIndex": 3,
+        "from": "0x0000000000000000000000000000000000000000",
+        "to": "0xAe6b19b637FDCB9c5C05238E5279754C39DE76A9",
+        "mintedAt": 1779216257000,
+        "mintedAtIso": "2026-05-19T18:44:17.000Z"
+      }
     },
     {
       "tokenId": 2,
-      "owner": "0x7cB75Ea73e219fDbA24B45966fd9ec0780Fb7229"
+      "owner": "0x7cB75Ea73e219fDbA24B45966fd9ec0780Fb7229",
+      "mint": {
+        "chainId": 232,
+        "contract": "0x303AC1D2736C70A9BaE4FC46aAe1c6Ed41C629Af",
+        "tokenId": 2,
+        "edition": 3,
+        "transactionHash": "0x4a70d693e75e53fd2e0e6efd7c9b61730d5cd7526a4f1d8f528ec3f9efd33df7",
+        "blockNumber": 5862595,
+        "blockHash": "0x3d293b07fb06bbcb5796c7d1aebd51d4f878ca5f31a911943a7babbc22393193",
+        "transactionIndex": 0,
+        "logIndex": 3,
+        "from": "0x0000000000000000000000000000000000000000",
+        "to": "0xAe6b19b637FDCB9c5C05238E5279754C39DE76A9",
+        "mintedAt": 1779216326000,
+        "mintedAtIso": "2026-05-19T18:45:26.000Z"
+      }
     },
     {
       "tokenId": 3,
-      "owner": "0xCa4c02922C98b58F9b341D41540Bf98850d3Df78"
+      "owner": "0xCa4c02922C98b58F9b341D41540Bf98850d3Df78",
+      "mint": {
+        "chainId": 232,
+        "contract": "0x303AC1D2736C70A9BaE4FC46aAe1c6Ed41C629Af",
+        "tokenId": 3,
+        "edition": 4,
+        "transactionHash": "0x61550de85e1442dc110c8108e4bd02e8723e53b1810287c3425171e6c6ab20fc",
+        "blockNumber": 5863274,
+        "blockHash": "0x8fcfd3e286eb0abd5ca24ef61b241d01c9b36c8231a9bef9c04c4e4986b439c4",
+        "transactionIndex": 0,
+        "logIndex": 3,
+        "from": "0x0000000000000000000000000000000000000000",
+        "to": "0xCa4c02922C98b58F9b341D41540Bf98850d3Df78",
+        "mintedAt": 1779235232000,
+        "mintedAtIso": "2026-05-20T00:00:32.000Z"
+      }
     },
     {
       "tokenId": 4,
-      "owner": "0xCa4c02922C98b58F9b341D41540Bf98850d3Df78"
+      "owner": "0xCa4c02922C98b58F9b341D41540Bf98850d3Df78",
+      "mint": {
+        "chainId": 232,
+        "contract": "0x303AC1D2736C70A9BaE4FC46aAe1c6Ed41C629Af",
+        "tokenId": 4,
+        "edition": 5,
+        "transactionHash": "0x61550de85e1442dc110c8108e4bd02e8723e53b1810287c3425171e6c6ab20fc",
+        "blockNumber": 5863274,
+        "blockHash": "0x8fcfd3e286eb0abd5ca24ef61b241d01c9b36c8231a9bef9c04c4e4986b439c4",
+        "transactionIndex": 0,
+        "logIndex": 4,
+        "from": "0x0000000000000000000000000000000000000000",
+        "to": "0xCa4c02922C98b58F9b341D41540Bf98850d3Df78",
+        "mintedAt": 1779235232000,
+        "mintedAtIso": "2026-05-20T00:00:32.000Z"
+      }
     },
     {
       "tokenId": 5,
-      "owner": "0xCa4c02922C98b58F9b341D41540Bf98850d3Df78"
+      "owner": "0xCa4c02922C98b58F9b341D41540Bf98850d3Df78",
+      "mint": {
+        "chainId": 232,
+        "contract": "0x303AC1D2736C70A9BaE4FC46aAe1c6Ed41C629Af",
+        "tokenId": 5,
+        "edition": 6,
+        "transactionHash": "0xbf3e7efaf167ac5064b973dd123499d58a004dec4e700f39b5e7b0abfd900148",
+        "blockNumber": 5863320,
+        "blockHash": "0x07028c971a1e3f387fc26eb17d061a40f524f6ae4a6daf0b462e31c290ec01d4",
+        "transactionIndex": 0,
+        "logIndex": 3,
+        "from": "0x0000000000000000000000000000000000000000",
+        "to": "0xCa4c02922C98b58F9b341D41540Bf98850d3Df78",
+        "mintedAt": 1779236587000,
+        "mintedAtIso": "2026-05-20T00:23:07.000Z"
+      }
     },
     {
       "tokenId": 6,
-      "owner": "0x417EcaE932D3bAE2d93a2af6dA91441d46532A7C"
+      "owner": "0x417EcaE932D3bAE2d93a2af6dA91441d46532A7C",
+      "mint": {
+        "chainId": 232,
+        "contract": "0x303AC1D2736C70A9BaE4FC46aAe1c6Ed41C629Af",
+        "tokenId": 6,
+        "edition": 7,
+        "transactionHash": "0x28d47e3b8ca80ff5c151a5813e1fdc9fec0d3716fa9653aafabebf23098947f3",
+        "blockNumber": 5863436,
+        "blockHash": "0xd351dd81ddaf2fa21c39e1e2f910863f4622f762b54b9e5dcd53300b1685f2f0",
+        "transactionIndex": 0,
+        "logIndex": 3,
+        "from": "0x0000000000000000000000000000000000000000",
+        "to": "0x417EcaE932D3bAE2d93a2af6dA91441d46532A7C",
+        "mintedAt": 1779239631000,
+        "mintedAtIso": "2026-05-20T01:13:51.000Z"
+      }
     },
     {
       "tokenId": 7,
-      "owner": "0x72423fe5168185aFB26390B5B9709aB58d20e3D8"
+      "owner": "0x72423fe5168185aFB26390B5B9709aB58d20e3D8",
+      "mint": {
+        "chainId": 232,
+        "contract": "0x303AC1D2736C70A9BaE4FC46aAe1c6Ed41C629Af",
+        "tokenId": 7,
+        "edition": 8,
+        "transactionHash": "0x7c42d43e1fb21a0042da64b61e3aedaf5b23695daa257dca8fbbcda4329e5220",
+        "blockNumber": 5863514,
+        "blockHash": "0x1411a1c46a25a620112327cd5b5401bf5cf224b6cb11dce388778d00c23dc602",
+        "transactionIndex": 0,
+        "logIndex": 3,
+        "from": "0x0000000000000000000000000000000000000000",
+        "to": "0x72423fe5168185aFB26390B5B9709aB58d20e3D8",
+        "mintedAt": 1779242185000,
+        "mintedAtIso": "2026-05-20T01:56:25.000Z"
+      }
     },
     {
       "tokenId": 8,
-      "owner": "0x061294782b7C73a675cF54124853c8133e3463FC"
+      "owner": "0x061294782b7C73a675cF54124853c8133e3463FC",
+      "mint": {
+        "chainId": 232,
+        "contract": "0x303AC1D2736C70A9BaE4FC46aAe1c6Ed41C629Af",
+        "tokenId": 8,
+        "edition": 9,
+        "transactionHash": "0xfaeab86ecf61ffedae67e32e661d7e7db97351a14c80984de2432c91a8e3cd80",
+        "blockNumber": 5864570,
+        "blockHash": "0x523b0c00fa10aef627433f2fe13060666985821d4619f4436fed183c24e4bc5d",
+        "transactionIndex": 0,
+        "logIndex": 3,
+        "from": "0x0000000000000000000000000000000000000000",
+        "to": "0x061294782b7C73a675cF54124853c8133e3463FC",
+        "mintedAt": 1779260536000,
+        "mintedAtIso": "2026-05-20T07:02:16.000Z"
+      }
     },
     {
       "tokenId": 9,
-      "owner": "0x061294782b7C73a675cF54124853c8133e3463FC"
+      "owner": "0x061294782b7C73a675cF54124853c8133e3463FC",
+      "mint": {
+        "chainId": 232,
+        "contract": "0x303AC1D2736C70A9BaE4FC46aAe1c6Ed41C629Af",
+        "tokenId": 9,
+        "edition": 10,
+        "transactionHash": "0xfaeab86ecf61ffedae67e32e661d7e7db97351a14c80984de2432c91a8e3cd80",
+        "blockNumber": 5864570,
+        "blockHash": "0x523b0c00fa10aef627433f2fe13060666985821d4619f4436fed183c24e4bc5d",
+        "transactionIndex": 0,
+        "logIndex": 4,
+        "from": "0x0000000000000000000000000000000000000000",
+        "to": "0x061294782b7C73a675cF54124853c8133e3463FC",
+        "mintedAt": 1779260536000,
+        "mintedAtIso": "2026-05-20T07:02:16.000Z"
+      }
     },
     {
       "tokenId": 10,
-      "owner": "0xf0198A8EAAF8D9C9527D628aFA0beAbE674169A5"
+      "owner": "0xf0198A8EAAF8D9C9527D628aFA0beAbE674169A5",
+      "mint": {
+        "chainId": 232,
+        "contract": "0x303AC1D2736C70A9BaE4FC46aAe1c6Ed41C629Af",
+        "tokenId": 10,
+        "edition": 11,
+        "transactionHash": "0xdc6954a1a1f39448eb57664a6718fb9b8c87c98ab52ec346ff5bfa91ceb3cdeb",
+        "blockNumber": 5864649,
+        "blockHash": "0x0491f3cd859ff2972fb190511a6f65e7b53a7bbbe53e262fdec4482d881600a2",
+        "transactionIndex": 0,
+        "logIndex": 3,
+        "from": "0x0000000000000000000000000000000000000000",
+        "to": "0xf0198A8EAAF8D9C9527D628aFA0beAbE674169A5",
+        "mintedAt": 1779261799000,
+        "mintedAtIso": "2026-05-20T07:23:19.000Z"
+      }
     },
     {
       "tokenId": 11,
-      "owner": "0xf0198A8EAAF8D9C9527D628aFA0beAbE674169A5"
+      "owner": "0xf0198A8EAAF8D9C9527D628aFA0beAbE674169A5",
+      "mint": {
+        "chainId": 232,
+        "contract": "0x303AC1D2736C70A9BaE4FC46aAe1c6Ed41C629Af",
+        "tokenId": 11,
+        "edition": 12,
+        "transactionHash": "0xdc6954a1a1f39448eb57664a6718fb9b8c87c98ab52ec346ff5bfa91ceb3cdeb",
+        "blockNumber": 5864649,
+        "blockHash": "0x0491f3cd859ff2972fb190511a6f65e7b53a7bbbe53e262fdec4482d881600a2",
+        "transactionIndex": 0,
+        "logIndex": 4,
+        "from": "0x0000000000000000000000000000000000000000",
+        "to": "0xf0198A8EAAF8D9C9527D628aFA0beAbE674169A5",
+        "mintedAt": 1779261799000,
+        "mintedAtIso": "2026-05-20T07:23:19.000Z"
+      }
     },
     {
       "tokenId": 12,
-      "owner": "0xf6Bc417BE86D8fd506c216c33C6fcB4B720c3438"
+      "owner": "0xf6Bc417BE86D8fd506c216c33C6fcB4B720c3438",
+      "mint": {
+        "chainId": 232,
+        "contract": "0x303AC1D2736C70A9BaE4FC46aAe1c6Ed41C629Af",
+        "tokenId": 12,
+        "edition": 13,
+        "transactionHash": "0x69a7d9959cfb0fa76e65898190ab3d5759725d3aa42198567c69194bfddacdc9",
+        "blockNumber": 5865003,
+        "blockHash": "0x6231346f17344a2a8b533ce06f9e45d607073a56c7c04791d57039fe46a70d18",
+        "transactionIndex": 0,
+        "logIndex": 3,
+        "from": "0x0000000000000000000000000000000000000000",
+        "to": "0xf6Bc417BE86D8fd506c216c33C6fcB4B720c3438",
+        "mintedAt": 1779265503000,
+        "mintedAtIso": "2026-05-20T08:25:03.000Z"
+      }
     },
     {
       "tokenId": 13,
-      "owner": "0xCa4c02922C98b58F9b341D41540Bf98850d3Df78"
+      "owner": "0xCa4c02922C98b58F9b341D41540Bf98850d3Df78",
+      "mint": {
+        "chainId": 232,
+        "contract": "0x303AC1D2736C70A9BaE4FC46aAe1c6Ed41C629Af",
+        "tokenId": 13,
+        "edition": 14,
+        "transactionHash": "0x1a35ea44ce6b6eea4673a7d9e1fffe2fdf26b2072f8c2ab8139154b823613d35",
+        "blockNumber": 5865036,
+        "blockHash": "0x7329ed4dc498b10933e807f6f77fa21565c2edbbbab0c513c9287fc2038787a6",
+        "transactionIndex": 1,
+        "logIndex": 10,
+        "from": "0x0000000000000000000000000000000000000000",
+        "to": "0xCa4c02922C98b58F9b341D41540Bf98850d3Df78",
+        "mintedAt": 1779265898000,
+        "mintedAtIso": "2026-05-20T08:31:38.000Z"
+      }
     },
     {
       "tokenId": 14,
-      "owner": "0xFEBC231959550fFecd1AD1Ae22A3d6Bb55471B6a"
+      "owner": "0xFEBC231959550fFecd1AD1Ae22A3d6Bb55471B6a",
+      "mint": {
+        "chainId": 232,
+        "contract": "0x303AC1D2736C70A9BaE4FC46aAe1c6Ed41C629Af",
+        "tokenId": 14,
+        "edition": 15,
+        "transactionHash": "0x64d5b048e51637d0299ea7691632f8713595b0ec4ff6a508b5ea8e40be9ac6b0",
+        "blockNumber": 5865765,
+        "blockHash": "0x99dbd65022a03d58e9c1107dadeef13e395d988ce3157cc81db276193d994227",
+        "transactionIndex": 0,
+        "logIndex": 3,
+        "from": "0x0000000000000000000000000000000000000000",
+        "to": "0xFEBC231959550fFecd1AD1Ae22A3d6Bb55471B6a",
+        "mintedAt": 1779269851000,
+        "mintedAtIso": "2026-05-20T09:37:31.000Z"
+      }
     },
     {
       "tokenId": 15,
-      "owner": "0xEda3E353Bf4A35A40074D443CBbc7B3194e4cb9A"
+      "owner": "0xEda3E353Bf4A35A40074D443CBbc7B3194e4cb9A",
+      "mint": {
+        "chainId": 232,
+        "contract": "0x303AC1D2736C70A9BaE4FC46aAe1c6Ed41C629Af",
+        "tokenId": 15,
+        "edition": 16,
+        "transactionHash": "0x66cad9eb697e7fb69ff06c14acd7a9046ed01082e89aa03b5c41c957bcef28bd",
+        "blockNumber": 5865936,
+        "blockHash": "0x16a972504ed2a0fd733883175821fe1c92045023ff0270f716762d6c768848dc",
+        "transactionIndex": 0,
+        "logIndex": 3,
+        "from": "0x0000000000000000000000000000000000000000",
+        "to": "0xEda3E353Bf4A35A40074D443CBbc7B3194e4cb9A",
+        "mintedAt": 1779273042000,
+        "mintedAtIso": "2026-05-20T10:30:42.000Z"
+      }
     },
     {
       "tokenId": 16,
-      "owner": "0x4Fd8A2C1Fc2ECF37B97201333D516E4E17F7EF11"
+      "owner": "0x4Fd8A2C1Fc2ECF37B97201333D516E4E17F7EF11",
+      "mint": {
+        "chainId": 232,
+        "contract": "0x303AC1D2736C70A9BaE4FC46aAe1c6Ed41C629Af",
+        "tokenId": 16,
+        "edition": 17,
+        "transactionHash": "0xa39243a00862a79b25b67adb9be5875d21f336349992f16b00b0362d9b4c62df",
+        "blockNumber": 5866724,
+        "blockHash": "0xe92e7823109bbfc004acce8238f608a064544a99a941d878461d41f973c6141b",
+        "transactionIndex": 0,
+        "logIndex": 3,
+        "from": "0x0000000000000000000000000000000000000000",
+        "to": "0x4Fd8A2C1Fc2ECF37B97201333D516E4E17F7EF11",
+        "mintedAt": 1779288615000,
+        "mintedAtIso": "2026-05-20T14:50:15.000Z"
+      }
     },
     {
       "tokenId": 17,
-      "owner": "0xEB1F379c1aCeeCDd3A52CcbE856a7872475b31cB"
+      "owner": "0xEB1F379c1aCeeCDd3A52CcbE856a7872475b31cB",
+      "mint": {
+        "chainId": 232,
+        "contract": "0x303AC1D2736C70A9BaE4FC46aAe1c6Ed41C629Af",
+        "tokenId": 17,
+        "edition": 18,
+        "transactionHash": "0x59560a06663db47a3a96c9b5f41ccfb6822bb94b54e0766aee0ba70ddc20ce66",
+        "blockNumber": 5867604,
+        "blockHash": "0x63abcd2811f45b5bf45438395494115665f9cd2cba07c4cb4be8c6d6fff642c3",
+        "transactionIndex": 0,
+        "logIndex": 6,
+        "from": "0x0000000000000000000000000000000000000000",
+        "to": "0xEB1F379c1aCeeCDd3A52CcbE856a7872475b31cB",
+        "mintedAt": 1779308771000,
+        "mintedAtIso": "2026-05-20T20:26:11.000Z"
+      }
     },
     {
       "tokenId": 18,
-      "owner": "0xEB1F379c1aCeeCDd3A52CcbE856a7872475b31cB"
+      "owner": "0xEB1F379c1aCeeCDd3A52CcbE856a7872475b31cB",
+      "mint": {
+        "chainId": 232,
+        "contract": "0x303AC1D2736C70A9BaE4FC46aAe1c6Ed41C629Af",
+        "tokenId": 18,
+        "edition": 19,
+        "transactionHash": "0x248ff1c502002e67c7a1ae8b6ca2ee84f493007bedfcd9a89802bf5adba8c552",
+        "blockNumber": 5869462,
+        "blockHash": "0x9c4d6411267009245b9301f48130f323b13ce4cfa710ac0eb348e527d2bd872c",
+        "transactionIndex": 0,
+        "logIndex": 6,
+        "from": "0x0000000000000000000000000000000000000000",
+        "to": "0xEB1F379c1aCeeCDd3A52CcbE856a7872475b31cB",
+        "mintedAt": 1779366960000,
+        "mintedAtIso": "2026-05-21T12:36:00.000Z"
+      }
     },
     {
       "tokenId": 19,
-      "owner": "0xEB1F379c1aCeeCDd3A52CcbE856a7872475b31cB"
+      "owner": "0xEB1F379c1aCeeCDd3A52CcbE856a7872475b31cB",
+      "mint": {
+        "chainId": 232,
+        "contract": "0x303AC1D2736C70A9BaE4FC46aAe1c6Ed41C629Af",
+        "tokenId": 19,
+        "edition": 20,
+        "transactionHash": "0x248ff1c502002e67c7a1ae8b6ca2ee84f493007bedfcd9a89802bf5adba8c552",
+        "blockNumber": 5869462,
+        "blockHash": "0x9c4d6411267009245b9301f48130f323b13ce4cfa710ac0eb348e527d2bd872c",
+        "transactionIndex": 0,
+        "logIndex": 7,
+        "from": "0x0000000000000000000000000000000000000000",
+        "to": "0xEB1F379c1aCeeCDd3A52CcbE856a7872475b31cB",
+        "mintedAt": 1779366960000,
+        "mintedAtIso": "2026-05-21T12:36:00.000Z"
+      }
     },
     {
       "tokenId": 20,
-      "owner": "0xEB1F379c1aCeeCDd3A52CcbE856a7872475b31cB"
+      "owner": "0xEB1F379c1aCeeCDd3A52CcbE856a7872475b31cB",
+      "mint": {
+        "chainId": 232,
+        "contract": "0x303AC1D2736C70A9BaE4FC46aAe1c6Ed41C629Af",
+        "tokenId": 20,
+        "edition": 21,
+        "transactionHash": "0x248ff1c502002e67c7a1ae8b6ca2ee84f493007bedfcd9a89802bf5adba8c552",
+        "blockNumber": 5869462,
+        "blockHash": "0x9c4d6411267009245b9301f48130f323b13ce4cfa710ac0eb348e527d2bd872c",
+        "transactionIndex": 0,
+        "logIndex": 8,
+        "from": "0x0000000000000000000000000000000000000000",
+        "to": "0xEB1F379c1aCeeCDd3A52CcbE856a7872475b31cB",
+        "mintedAt": 1779366960000,
+        "mintedAtIso": "2026-05-21T12:36:00.000Z"
+      }
     },
     {
       "tokenId": 21,
-      "owner": "0xEB1F379c1aCeeCDd3A52CcbE856a7872475b31cB"
+      "owner": "0xEB1F379c1aCeeCDd3A52CcbE856a7872475b31cB",
+      "mint": {
+        "chainId": 232,
+        "contract": "0x303AC1D2736C70A9BaE4FC46aAe1c6Ed41C629Af",
+        "tokenId": 21,
+        "edition": 22,
+        "transactionHash": "0x248ff1c502002e67c7a1ae8b6ca2ee84f493007bedfcd9a89802bf5adba8c552",
+        "blockNumber": 5869462,
+        "blockHash": "0x9c4d6411267009245b9301f48130f323b13ce4cfa710ac0eb348e527d2bd872c",
+        "transactionIndex": 0,
+        "logIndex": 9,
+        "from": "0x0000000000000000000000000000000000000000",
+        "to": "0xEB1F379c1aCeeCDd3A52CcbE856a7872475b31cB",
+        "mintedAt": 1779366960000,
+        "mintedAtIso": "2026-05-21T12:36:00.000Z"
+      }
     },
     {
       "tokenId": 22,
-      "owner": "0xEB1F379c1aCeeCDd3A52CcbE856a7872475b31cB"
+      "owner": "0xEB1F379c1aCeeCDd3A52CcbE856a7872475b31cB",
+      "mint": {
+        "chainId": 232,
+        "contract": "0x303AC1D2736C70A9BaE4FC46aAe1c6Ed41C629Af",
+        "tokenId": 22,
+        "edition": 23,
+        "transactionHash": "0x248ff1c502002e67c7a1ae8b6ca2ee84f493007bedfcd9a89802bf5adba8c552",
+        "blockNumber": 5869462,
+        "blockHash": "0x9c4d6411267009245b9301f48130f323b13ce4cfa710ac0eb348e527d2bd872c",
+        "transactionIndex": 0,
+        "logIndex": 10,
+        "from": "0x0000000000000000000000000000000000000000",
+        "to": "0xEB1F379c1aCeeCDd3A52CcbE856a7872475b31cB",
+        "mintedAt": 1779366960000,
+        "mintedAtIso": "2026-05-21T12:36:00.000Z"
+      }
     },
     {
       "tokenId": 23,
-      "owner": "0xEB1F379c1aCeeCDd3A52CcbE856a7872475b31cB"
+      "owner": "0xEB1F379c1aCeeCDd3A52CcbE856a7872475b31cB",
+      "mint": {
+        "chainId": 232,
+        "contract": "0x303AC1D2736C70A9BaE4FC46aAe1c6Ed41C629Af",
+        "tokenId": 23,
+        "edition": 24,
+        "transactionHash": "0x248ff1c502002e67c7a1ae8b6ca2ee84f493007bedfcd9a89802bf5adba8c552",
+        "blockNumber": 5869462,
+        "blockHash": "0x9c4d6411267009245b9301f48130f323b13ce4cfa710ac0eb348e527d2bd872c",
+        "transactionIndex": 0,
+        "logIndex": 11,
+        "from": "0x0000000000000000000000000000000000000000",
+        "to": "0xEB1F379c1aCeeCDd3A52CcbE856a7872475b31cB",
+        "mintedAt": 1779366960000,
+        "mintedAtIso": "2026-05-21T12:36:00.000Z"
+      }
     },
     {
       "tokenId": 24,
-      "owner": "0xEB1F379c1aCeeCDd3A52CcbE856a7872475b31cB"
+      "owner": "0xEB1F379c1aCeeCDd3A52CcbE856a7872475b31cB",
+      "mint": {
+        "chainId": 232,
+        "contract": "0x303AC1D2736C70A9BaE4FC46aAe1c6Ed41C629Af",
+        "tokenId": 24,
+        "edition": 25,
+        "transactionHash": "0x248ff1c502002e67c7a1ae8b6ca2ee84f493007bedfcd9a89802bf5adba8c552",
+        "blockNumber": 5869462,
+        "blockHash": "0x9c4d6411267009245b9301f48130f323b13ce4cfa710ac0eb348e527d2bd872c",
+        "transactionIndex": 0,
+        "logIndex": 12,
+        "from": "0x0000000000000000000000000000000000000000",
+        "to": "0xEB1F379c1aCeeCDd3A52CcbE856a7872475b31cB",
+        "mintedAt": 1779366960000,
+        "mintedAtIso": "2026-05-21T12:36:00.000Z"
+      }
     },
     {
       "tokenId": 25,
-      "owner": "0xEB1F379c1aCeeCDd3A52CcbE856a7872475b31cB"
+      "owner": "0xEB1F379c1aCeeCDd3A52CcbE856a7872475b31cB",
+      "mint": {
+        "chainId": 232,
+        "contract": "0x303AC1D2736C70A9BaE4FC46aAe1c6Ed41C629Af",
+        "tokenId": 25,
+        "edition": 26,
+        "transactionHash": "0x248ff1c502002e67c7a1ae8b6ca2ee84f493007bedfcd9a89802bf5adba8c552",
+        "blockNumber": 5869462,
+        "blockHash": "0x9c4d6411267009245b9301f48130f323b13ce4cfa710ac0eb348e527d2bd872c",
+        "transactionIndex": 0,
+        "logIndex": 13,
+        "from": "0x0000000000000000000000000000000000000000",
+        "to": "0xEB1F379c1aCeeCDd3A52CcbE856a7872475b31cB",
+        "mintedAt": 1779366960000,
+        "mintedAtIso": "2026-05-21T12:36:00.000Z"
+      }
     },
     {
       "tokenId": 26,
-      "owner": "0xEB1F379c1aCeeCDd3A52CcbE856a7872475b31cB"
+      "owner": "0xEB1F379c1aCeeCDd3A52CcbE856a7872475b31cB",
+      "mint": {
+        "chainId": 232,
+        "contract": "0x303AC1D2736C70A9BaE4FC46aAe1c6Ed41C629Af",
+        "tokenId": 26,
+        "edition": 27,
+        "transactionHash": "0x248ff1c502002e67c7a1ae8b6ca2ee84f493007bedfcd9a89802bf5adba8c552",
+        "blockNumber": 5869462,
+        "blockHash": "0x9c4d6411267009245b9301f48130f323b13ce4cfa710ac0eb348e527d2bd872c",
+        "transactionIndex": 0,
+        "logIndex": 14,
+        "from": "0x0000000000000000000000000000000000000000",
+        "to": "0xEB1F379c1aCeeCDd3A52CcbE856a7872475b31cB",
+        "mintedAt": 1779366960000,
+        "mintedAtIso": "2026-05-21T12:36:00.000Z"
+      }
     },
     {
       "tokenId": 27,
-      "owner": "0xEB1F379c1aCeeCDd3A52CcbE856a7872475b31cB"
+      "owner": "0xEB1F379c1aCeeCDd3A52CcbE856a7872475b31cB",
+      "mint": {
+        "chainId": 232,
+        "contract": "0x303AC1D2736C70A9BaE4FC46aAe1c6Ed41C629Af",
+        "tokenId": 27,
+        "edition": 28,
+        "transactionHash": "0x248ff1c502002e67c7a1ae8b6ca2ee84f493007bedfcd9a89802bf5adba8c552",
+        "blockNumber": 5869462,
+        "blockHash": "0x9c4d6411267009245b9301f48130f323b13ce4cfa710ac0eb348e527d2bd872c",
+        "transactionIndex": 0,
+        "logIndex": 15,
+        "from": "0x0000000000000000000000000000000000000000",
+        "to": "0xEB1F379c1aCeeCDd3A52CcbE856a7872475b31cB",
+        "mintedAt": 1779366960000,
+        "mintedAtIso": "2026-05-21T12:36:00.000Z"
+      }
     },
     {
       "tokenId": 28,
-      "owner": "0xD8A713bB1dE35eD30EAC5Bd01352ff678C7aF69D"
+      "owner": "0xD8A713bB1dE35eD30EAC5Bd01352ff678C7aF69D",
+      "mint": {
+        "chainId": 232,
+        "contract": "0x303AC1D2736C70A9BaE4FC46aAe1c6Ed41C629Af",
+        "tokenId": 28,
+        "edition": 29,
+        "transactionHash": "0xe5eaf10a332db7756d2f01c0f3e105b1f60e891daa11e15240abdb17807e1492",
+        "blockNumber": 5869542,
+        "blockHash": "0x194907509220d0b2829f49d0390043b2f15f1245a67fa43d3b724835bda9cbdf",
+        "transactionIndex": 1,
+        "logIndex": 14,
+        "from": "0x0000000000000000000000000000000000000000",
+        "to": "0xD8A713bB1dE35eD30EAC5Bd01352ff678C7aF69D",
+        "mintedAt": 1779369441000,
+        "mintedAtIso": "2026-05-21T13:17:21.000Z"
+      }
     },
     {
       "tokenId": 29,
-      "owner": "0xD8A713bB1dE35eD30EAC5Bd01352ff678C7aF69D"
+      "owner": "0xD8A713bB1dE35eD30EAC5Bd01352ff678C7aF69D",
+      "mint": {
+        "chainId": 232,
+        "contract": "0x303AC1D2736C70A9BaE4FC46aAe1c6Ed41C629Af",
+        "tokenId": 29,
+        "edition": 30,
+        "transactionHash": "0xe5eaf10a332db7756d2f01c0f3e105b1f60e891daa11e15240abdb17807e1492",
+        "blockNumber": 5869542,
+        "blockHash": "0x194907509220d0b2829f49d0390043b2f15f1245a67fa43d3b724835bda9cbdf",
+        "transactionIndex": 1,
+        "logIndex": 15,
+        "from": "0x0000000000000000000000000000000000000000",
+        "to": "0xD8A713bB1dE35eD30EAC5Bd01352ff678C7aF69D",
+        "mintedAt": 1779369441000,
+        "mintedAtIso": "2026-05-21T13:17:21.000Z"
+      }
     },
     {
       "tokenId": 30,
-      "owner": "0x73ef51128aa789fd991039F2E9c7a80A41D4B4b2"
+      "owner": "0x73ef51128aa789fd991039F2E9c7a80A41D4B4b2",
+      "mint": {
+        "chainId": 232,
+        "contract": "0x303AC1D2736C70A9BaE4FC46aAe1c6Ed41C629Af",
+        "tokenId": 30,
+        "edition": 31,
+        "transactionHash": "0xff1b05ea396477a54a9f7ffede6aa5d42ed916f78bcb742c40f444a8e58376ff",
+        "blockNumber": 5869623,
+        "blockHash": "0xaa6a336fe5274feb184afd9262b24c4df45e4714195082d89ba010eefd322b42",
+        "transactionIndex": 0,
+        "logIndex": 6,
+        "from": "0x0000000000000000000000000000000000000000",
+        "to": "0x73ef51128aa789fd991039F2E9c7a80A41D4B4b2",
+        "mintedAt": 1779371441000,
+        "mintedAtIso": "2026-05-21T13:50:41.000Z"
+      }
     },
     {
       "tokenId": 31,
-      "owner": "0x3056f08AC40eC5F28B1F7EF33d1020d2AED74fdF"
+      "owner": "0x3056f08AC40eC5F28B1F7EF33d1020d2AED74fdF",
+      "mint": {
+        "chainId": 232,
+        "contract": "0x303AC1D2736C70A9BaE4FC46aAe1c6Ed41C629Af",
+        "tokenId": 31,
+        "edition": 32,
+        "transactionHash": "0x6e4b2862f7c036993ffdf5c9b002103c58ec8f9176bc8b364b948cb6b9a773b5",
+        "blockNumber": 5869905,
+        "blockHash": "0xb323708fbcd4eba54a1c7b8af08ddf8db7524c337c8619a8fcb5e211124fa5e9",
+        "transactionIndex": 0,
+        "logIndex": 3,
+        "from": "0x0000000000000000000000000000000000000000",
+        "to": "0x3056f08AC40eC5F28B1F7EF33d1020d2AED74fdF",
+        "mintedAt": 1779377216000,
+        "mintedAtIso": "2026-05-21T15:26:56.000Z"
+      }
     },
     {
       "tokenId": 32,
-      "owner": "0xCa4c02922C98b58F9b341D41540Bf98850d3Df78"
+      "owner": "0xCa4c02922C98b58F9b341D41540Bf98850d3Df78",
+      "mint": {
+        "chainId": 232,
+        "contract": "0x303AC1D2736C70A9BaE4FC46aAe1c6Ed41C629Af",
+        "tokenId": 32,
+        "edition": 33,
+        "transactionHash": "0xf7bcfda5d03892ef65f22cb18a965205e5906bd420d1efa5a7c5143fbff8a4a5",
+        "blockNumber": 5870043,
+        "blockHash": "0xb2f741b8d8cb5d7b941a2093e611b758532605048458c7cea47215cd10d8a7c6",
+        "transactionIndex": 0,
+        "logIndex": 3,
+        "from": "0x0000000000000000000000000000000000000000",
+        "to": "0xCa4c02922C98b58F9b341D41540Bf98850d3Df78",
+        "mintedAt": 1779379634000,
+        "mintedAtIso": "2026-05-21T16:07:14.000Z"
+      }
     },
     {
       "tokenId": 33,
-      "owner": "0xCa4c02922C98b58F9b341D41540Bf98850d3Df78"
+      "owner": "0xCa4c02922C98b58F9b341D41540Bf98850d3Df78",
+      "mint": {
+        "chainId": 232,
+        "contract": "0x303AC1D2736C70A9BaE4FC46aAe1c6Ed41C629Af",
+        "tokenId": 33,
+        "edition": 34,
+        "transactionHash": "0xf7bcfda5d03892ef65f22cb18a965205e5906bd420d1efa5a7c5143fbff8a4a5",
+        "blockNumber": 5870043,
+        "blockHash": "0xb2f741b8d8cb5d7b941a2093e611b758532605048458c7cea47215cd10d8a7c6",
+        "transactionIndex": 0,
+        "logIndex": 4,
+        "from": "0x0000000000000000000000000000000000000000",
+        "to": "0xCa4c02922C98b58F9b341D41540Bf98850d3Df78",
+        "mintedAt": 1779379634000,
+        "mintedAtIso": "2026-05-21T16:07:14.000Z"
+      }
     },
     {
       "tokenId": 34,
-      "owner": "0xCa4c02922C98b58F9b341D41540Bf98850d3Df78"
+      "owner": "0xCa4c02922C98b58F9b341D41540Bf98850d3Df78",
+      "mint": {
+        "chainId": 232,
+        "contract": "0x303AC1D2736C70A9BaE4FC46aAe1c6Ed41C629Af",
+        "tokenId": 34,
+        "edition": 35,
+        "transactionHash": "0xf7bcfda5d03892ef65f22cb18a965205e5906bd420d1efa5a7c5143fbff8a4a5",
+        "blockNumber": 5870043,
+        "blockHash": "0xb2f741b8d8cb5d7b941a2093e611b758532605048458c7cea47215cd10d8a7c6",
+        "transactionIndex": 0,
+        "logIndex": 5,
+        "from": "0x0000000000000000000000000000000000000000",
+        "to": "0xCa4c02922C98b58F9b341D41540Bf98850d3Df78",
+        "mintedAt": 1779379634000,
+        "mintedAtIso": "2026-05-21T16:07:14.000Z"
+      }
     },
     {
       "tokenId": 35,
-      "owner": "0xEB62960cD9D5b84098b766E43c24018829A37457"
+      "owner": "0xEB62960cD9D5b84098b766E43c24018829A37457",
+      "mint": {
+        "chainId": 232,
+        "contract": "0x303AC1D2736C70A9BaE4FC46aAe1c6Ed41C629Af",
+        "tokenId": 35,
+        "edition": 36,
+        "transactionHash": "0x797dee13ca33dc66e72500d3bdcf9df3e8238f546dd2ee4252584a383f8a56c9",
+        "blockNumber": 5871670,
+        "blockHash": "0x7f4dfc61af6551d9b92e66075946a4df17b5369e5e2360d54f38229ab9a0b52a",
+        "transactionIndex": 0,
+        "logIndex": 2,
+        "from": "0x0000000000000000000000000000000000000000",
+        "to": "0xEB62960cD9D5b84098b766E43c24018829A37457",
+        "mintedAt": 1779433298000,
+        "mintedAtIso": "2026-05-22T07:01:38.000Z"
+      }
     },
     {
       "tokenId": 36,
-      "owner": "0xEB62960cD9D5b84098b766E43c24018829A37457"
+      "owner": "0xEB62960cD9D5b84098b766E43c24018829A37457",
+      "mint": {
+        "chainId": 232,
+        "contract": "0x303AC1D2736C70A9BaE4FC46aAe1c6Ed41C629Af",
+        "tokenId": 36,
+        "edition": 37,
+        "transactionHash": "0x6aead1acc0785eb4f52869ff565d7b2af1d7c49da1c83fe6d321a414e4e286c8",
+        "blockNumber": 5871812,
+        "blockHash": "0xdea3085cf6330d1c25fd5d3c310efc0ee6194f3c2e8021a13eb206cde4780e96",
+        "transactionIndex": 0,
+        "logIndex": 3,
+        "from": "0x0000000000000000000000000000000000000000",
+        "to": "0xEB62960cD9D5b84098b766E43c24018829A37457",
+        "mintedAt": 1779434581000,
+        "mintedAtIso": "2026-05-22T07:23:01.000Z"
+      }
     },
     {
       "tokenId": 37,
-      "owner": "0xEB62960cD9D5b84098b766E43c24018829A37457"
+      "owner": "0xEB62960cD9D5b84098b766E43c24018829A37457",
+      "mint": {
+        "chainId": 232,
+        "contract": "0x303AC1D2736C70A9BaE4FC46aAe1c6Ed41C629Af",
+        "tokenId": 37,
+        "edition": 38,
+        "transactionHash": "0x6aead1acc0785eb4f52869ff565d7b2af1d7c49da1c83fe6d321a414e4e286c8",
+        "blockNumber": 5871812,
+        "blockHash": "0xdea3085cf6330d1c25fd5d3c310efc0ee6194f3c2e8021a13eb206cde4780e96",
+        "transactionIndex": 0,
+        "logIndex": 4,
+        "from": "0x0000000000000000000000000000000000000000",
+        "to": "0xEB62960cD9D5b84098b766E43c24018829A37457",
+        "mintedAt": 1779434581000,
+        "mintedAtIso": "2026-05-22T07:23:01.000Z"
+      }
     },
     {
       "tokenId": 38,
-      "owner": "0xEB1F379c1aCeeCDd3A52CcbE856a7872475b31cB"
+      "owner": "0xEB1F379c1aCeeCDd3A52CcbE856a7872475b31cB",
+      "mint": {
+        "chainId": 232,
+        "contract": "0x303AC1D2736C70A9BaE4FC46aAe1c6Ed41C629Af",
+        "tokenId": 38,
+        "edition": 39,
+        "transactionHash": "0x22dcca81c6edd60a9d7deb1a50946628a9b541a8aff92846c217b777d4ab4001",
+        "blockNumber": 5873409,
+        "blockHash": "0xcd42900e1eb112299f8a3b8616d815c0ab7eb06af3f2955197b3921d6e9ce2a9",
+        "transactionIndex": 0,
+        "logIndex": 3,
+        "from": "0x0000000000000000000000000000000000000000",
+        "to": "0xEB1F379c1aCeeCDd3A52CcbE856a7872475b31cB",
+        "mintedAt": 1779459543000,
+        "mintedAtIso": "2026-05-22T14:19:03.000Z"
+      }
     },
     {
       "tokenId": 39,
-      "owner": "0xE9Fa97395727e91e3d7f6f3bB420e49509A98dd9"
+      "owner": "0xE9Fa97395727e91e3d7f6f3bB420e49509A98dd9",
+      "mint": {
+        "chainId": 232,
+        "contract": "0x303AC1D2736C70A9BaE4FC46aAe1c6Ed41C629Af",
+        "tokenId": 39,
+        "edition": 40,
+        "transactionHash": "0xf3e022be8b008b7320d441d683733dcd87c8ce6b2442b3104c574d895d44fa0d",
+        "blockNumber": 5873482,
+        "blockHash": "0xaa5520250f522d72d4b8238546713bdf733858c9991ae23ae40c3434dbe4e3af",
+        "transactionIndex": 0,
+        "logIndex": 3,
+        "from": "0x0000000000000000000000000000000000000000",
+        "to": "0xE9Fa97395727e91e3d7f6f3bB420e49509A98dd9",
+        "mintedAt": 1779460707000,
+        "mintedAtIso": "2026-05-22T14:38:27.000Z"
+      }
     },
     {
       "tokenId": 40,
-      "owner": "0x633Ecf099E1bb1C6ec04d8dC63Da74bAE7646CA9"
+      "owner": "0x633Ecf099E1bb1C6ec04d8dC63Da74bAE7646CA9",
+      "mint": {
+        "chainId": 232,
+        "contract": "0x303AC1D2736C70A9BaE4FC46aAe1c6Ed41C629Af",
+        "tokenId": 40,
+        "edition": 41,
+        "transactionHash": "0x38cdfb103492a058787b9a5f500f14bd73f7a6af8c6e49b554a23ac29741b8c4",
+        "blockNumber": 5873550,
+        "blockHash": "0x3996bc24d522be73db0d9041d7a36e02b2803562dc84fe108451645dabd5f3af",
+        "transactionIndex": 0,
+        "logIndex": 3,
+        "from": "0x0000000000000000000000000000000000000000",
+        "to": "0x633Ecf099E1bb1C6ec04d8dC63Da74bAE7646CA9",
+        "mintedAt": 1779461356000,
+        "mintedAtIso": "2026-05-22T14:49:16.000Z"
+      }
     },
     {
       "tokenId": 41,
-      "owner": "0x3b14F4C0BAdEd2ef78C779Ea5a76CeFcEd3BbDfa"
+      "owner": "0x3b14F4C0BAdEd2ef78C779Ea5a76CeFcEd3BbDfa",
+      "mint": {
+        "chainId": 232,
+        "contract": "0x303AC1D2736C70A9BaE4FC46aAe1c6Ed41C629Af",
+        "tokenId": 41,
+        "edition": 42,
+        "transactionHash": "0x247186f8f3f028dd08311fbff2bd397f3c46e1d965a08dcbb20e69a145e996e9",
+        "blockNumber": 5873780,
+        "blockHash": "0x48b32733136a94bd33d59023449532642b7dcbb23ce9dafdc15cc983806356dd",
+        "transactionIndex": 0,
+        "logIndex": 3,
+        "from": "0x0000000000000000000000000000000000000000",
+        "to": "0x3b14F4C0BAdEd2ef78C779Ea5a76CeFcEd3BbDfa",
+        "mintedAt": 1779464418000,
+        "mintedAtIso": "2026-05-22T15:40:18.000Z"
+      }
     },
     {
       "tokenId": 42,
-      "owner": "0xBbd9870b8128a355dc6200abB6C948002ae7049b"
+      "owner": "0xBbd9870b8128a355dc6200abB6C948002ae7049b",
+      "mint": {
+        "chainId": 232,
+        "contract": "0x303AC1D2736C70A9BaE4FC46aAe1c6Ed41C629Af",
+        "tokenId": 42,
+        "edition": 43,
+        "transactionHash": "0xc8b9ea7854a971ed3c5a9d862ff6123ca6bf6ed8dc620cc3ce947f6408c4ee13",
+        "blockNumber": 5873815,
+        "blockHash": "0x98858d9d7447cae5cf57ccc4404cf27305f86ac4a9488ecd0568d9795abc6ea1",
+        "transactionIndex": 0,
+        "logIndex": 3,
+        "from": "0x0000000000000000000000000000000000000000",
+        "to": "0xBbd9870b8128a355dc6200abB6C948002ae7049b",
+        "mintedAt": 1779465105000,
+        "mintedAtIso": "2026-05-22T15:51:45.000Z"
+      }
     },
     {
       "tokenId": 43,
-      "owner": "0x72BEA315EA96C24af722216Eb2aC92AD05a8B702"
+      "owner": "0x72BEA315EA96C24af722216Eb2aC92AD05a8B702",
+      "mint": {
+        "chainId": 232,
+        "contract": "0x303AC1D2736C70A9BaE4FC46aAe1c6Ed41C629Af",
+        "tokenId": 43,
+        "edition": 44,
+        "transactionHash": "0xba9ad738d1e460de91fd5f22e4541e0b484b96eda3bb84d0f496cba31b1d7ab9",
+        "blockNumber": 5873822,
+        "blockHash": "0x343e6dc6b45e523eb057c50d43ad410867fe68be4691f39bb791a5d279e1a5b8",
+        "transactionIndex": 0,
+        "logIndex": 3,
+        "from": "0x0000000000000000000000000000000000000000",
+        "to": "0x72BEA315EA96C24af722216Eb2aC92AD05a8B702",
+        "mintedAt": 1779465192000,
+        "mintedAtIso": "2026-05-22T15:53:12.000Z"
+      }
     },
     {
       "tokenId": 44,
-      "owner": "0xae260A3777C70d5ea3cAccF6E3BB72DDd65dB32f"
+      "owner": "0xae260A3777C70d5ea3cAccF6E3BB72DDd65dB32f",
+      "mint": {
+        "chainId": 232,
+        "contract": "0x303AC1D2736C70A9BaE4FC46aAe1c6Ed41C629Af",
+        "tokenId": 44,
+        "edition": 45,
+        "transactionHash": "0x6d04d25d0b7c9cb3f387926bde3e4a38f454b7c1daa15c11af6d0dcc254031f9",
+        "blockNumber": 5873913,
+        "blockHash": "0xc0ae009c7dd69d9a6e52c3dd67a61936bdf058a93ada9c231e9472f73461c65f",
+        "transactionIndex": 0,
+        "logIndex": 3,
+        "from": "0x0000000000000000000000000000000000000000",
+        "to": "0xae260A3777C70d5ea3cAccF6E3BB72DDd65dB32f",
+        "mintedAt": 1779466483000,
+        "mintedAtIso": "2026-05-22T16:14:43.000Z"
+      }
     },
     {
       "tokenId": 45,
-      "owner": "0x36D983f2ED65629118e7B6c093719e371A06E4ac"
+      "owner": "0x36D983f2ED65629118e7B6c093719e371A06E4ac",
+      "mint": {
+        "chainId": 232,
+        "contract": "0x303AC1D2736C70A9BaE4FC46aAe1c6Ed41C629Af",
+        "tokenId": 45,
+        "edition": 46,
+        "transactionHash": "0x06791dfd43f3fd85e3d0278bcbeb2521a1ebefe89f4126b0768fc7b43ec6b2a0",
+        "blockNumber": 5874378,
+        "blockHash": "0x1a3e043ce6cb8e394e1b73402d947cf40c0240a91beb6594a5313ad08eabf001",
+        "transactionIndex": 0,
+        "logIndex": 3,
+        "from": "0x0000000000000000000000000000000000000000",
+        "to": "0x36D983f2ED65629118e7B6c093719e371A06E4ac",
+        "mintedAt": 1779481382000,
+        "mintedAtIso": "2026-05-22T20:23:02.000Z"
+      }
     },
     {
       "tokenId": 46,
-      "owner": "0xf4E23AB731c72c3a4Ce19C0F0051b2863257B1F5"
+      "owner": "0xf4E23AB731c72c3a4Ce19C0F0051b2863257B1F5",
+      "mint": {
+        "chainId": 232,
+        "contract": "0x303AC1D2736C70A9BaE4FC46aAe1c6Ed41C629Af",
+        "tokenId": 46,
+        "edition": 47,
+        "transactionHash": "0xd3eae826984cc80e3c1113db842ee9cdc3ce468c14b8a322d6b776c0ffa4d50e",
+        "blockNumber": 5875267,
+        "blockHash": "0x6a724f65ce80c70b6c4ade7c3e56049f498c4087629632819aa21daacaff14f0",
+        "transactionIndex": 0,
+        "logIndex": 3,
+        "from": "0x0000000000000000000000000000000000000000",
+        "to": "0xf4E23AB731c72c3a4Ce19C0F0051b2863257B1F5",
+        "mintedAt": 1779512590000,
+        "mintedAtIso": "2026-05-23T05:03:10.000Z"
+      }
     },
     {
       "tokenId": 47,
-      "owner": "0x7aFB9738Dc63F9B801057605197bAE225D931E12"
+      "owner": "0x7aFB9738Dc63F9B801057605197bAE225D931E12",
+      "mint": {
+        "chainId": 232,
+        "contract": "0x303AC1D2736C70A9BaE4FC46aAe1c6Ed41C629Af",
+        "tokenId": 47,
+        "edition": 48,
+        "transactionHash": "0x7c9967870af35e64d2fb142d10615b8804c6f5ed565090b57c9081ef9638a2f1",
+        "blockNumber": 5875346,
+        "blockHash": "0x33cc9ee78035b7a54eecf787bd5b587480094f7a1412249ce7c3748cb030d871",
+        "transactionIndex": 0,
+        "logIndex": 3,
+        "from": "0x0000000000000000000000000000000000000000",
+        "to": "0x7aFB9738Dc63F9B801057605197bAE225D931E12",
+        "mintedAt": 1779515259000,
+        "mintedAtIso": "2026-05-23T05:47:39.000Z"
+      }
     }
   ],
   "totalClaimed": 48,
-  "fetchedAt": 1780297151817,
+  "fetchedAt": 1780358044545,
   "seeded": true
 }

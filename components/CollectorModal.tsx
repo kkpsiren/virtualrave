@@ -1,25 +1,77 @@
 "use client";
+import type { MouseEvent } from "react";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { useAccount, usePublicClient, useSwitchChain, useWriteContract } from "wagmi";
+import { getAddress, isAddress, type Address } from "viem";
 import { getVr303Artwork } from "@/lib/vr303Artwork";
-import { lenscanTokenUrl, padTokenId } from "@/lib/vr303Constants";
-import { CONTRACT } from "@/lib/wagmi";
+import { lenscanTokenUrl, lenscanTxUrl, padTokenId } from "@/lib/vr303Constants";
+import { CONTRACT, lensMainnet } from "@/lib/wagmi";
 import type { CollectorRecord } from "@/lib/collectors";
+import type { OrbSession } from "./OrbLoginPanel";
+
+const ERC721_TRANSFER_ABI = [
+  {
+    name: "transferFrom",
+    type: "function",
+    stateMutability: "nonpayable",
+    inputs: [
+      { name: "from", type: "address" },
+      { name: "to", type: "address" },
+      { name: "tokenId", type: "uint256" },
+    ],
+    outputs: [],
+  },
+] as const;
 
 interface CollectorModalProps {
   record: CollectorRecord;
+  isYours: boolean;
+  orbSession: OrbSession | null;
+  onConnect: () => void;
+  onReplay: (record: CollectorRecord, buttonRect: DOMRect | null) => void;
+  onTransferComplete: (record: CollectorRecord, nextOwner: string) => void;
   onClose: () => void;
 }
 
-export function CollectorModal({ record, onClose }: CollectorModalProps) {
+function getOrbWalletAddress(session: OrbSession | null): Address | null {
+  const candidate = session?.userId ?? session?.account;
+  return candidate && isAddress(candidate) ? getAddress(candidate) : null;
+}
+
+export function CollectorModal({
+  record,
+  isYours,
+  orbSession,
+  onConnect,
+  onReplay,
+  onTransferComplete,
+  onClose,
+}: CollectorModalProps) {
+  const { address, chainId } = useAccount();
+  const publicClient = usePublicClient({ chainId: lensMainnet.id });
+  const { switchChainAsync } = useSwitchChain();
+  const { writeContractAsync } = useWriteContract();
   const [copied, setCopied] = useState(false);
+  const [transferStatus, setTransferStatus] = useState<"idle" | "busy" | "success" | "error">("idle");
+  const [transferMessage, setTransferMessage] = useState<string | null>(null);
   const metadata = record.metadata ?? null;
   const displayEdition = metadata?.edition ?? record.tokenId + 1;
   const padded = padTokenId(displayEdition);
   const artworkUrl = metadata?.image ?? getVr303Artwork(record.tokenId);
   const attributes = metadata?.attributes ?? [];
   const mintedAt = metadata?.date ? new Date(metadata.date).toLocaleString() : null;
+  const cachedMintedAt = record.mint?.mintedAt ? new Date(record.mint.mintedAt).toLocaleString() : null;
   const tokenLabel = padTokenId(record.tokenId);
+  const orbWalletAddress = getOrbWalletAddress(orbSession);
+  const alreadyInOrbWallet =
+    Boolean(orbWalletAddress) && record.owner.toLowerCase() === orbWalletAddress?.toLowerCase();
+  const transferBusy = transferStatus === "busy";
+  const transferLabel = alreadyInOrbWallet
+    ? "ALREADY IN LENS WALLET"
+    : orbWalletAddress
+      ? "SEND TO LENS/ORB WALLET"
+      : "CONNECT ORB TO SEND";
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -40,6 +92,70 @@ export function CollectorModal({ record, onClose }: CollectorModalProps) {
       window.setTimeout(() => setCopied(false), 1500);
     } catch {
       // ignore
+    }
+  };
+
+  const handleReplay = (event: MouseEvent<HTMLButtonElement>) => {
+    onReplay(record, event.currentTarget.getBoundingClientRect());
+  };
+
+  const handleTransferToOrb = async () => {
+    if (transferBusy || alreadyInOrbWallet) return;
+    setTransferStatus("idle");
+    setTransferMessage(null);
+
+    if (!orbWalletAddress) {
+      setTransferStatus("error");
+      setTransferMessage("Connect Orb first so we can read your Lens wallet address.");
+      onConnect();
+      return;
+    }
+
+    if (!address || !isYours) {
+      setTransferStatus("error");
+      setTransferMessage("Connect the wallet that currently owns this edition.");
+      onConnect();
+      return;
+    }
+
+    try {
+      setTransferStatus("busy");
+      setTransferMessage("Check your wallet to send this edition to your Lens profile wallet.");
+
+      if (chainId !== lensMainnet.id) {
+        await switchChainAsync({ chainId: lensMainnet.id });
+      }
+
+      const hash = await writeContractAsync({
+        address: CONTRACT,
+        abi: ERC721_TRANSFER_ABI,
+        functionName: "transferFrom",
+        args: [getAddress(record.owner), orbWalletAddress, BigInt(record.tokenId)],
+        chainId: lensMainnet.id,
+      });
+
+      setTransferMessage("Waiting for Lens confirmation...");
+      if (publicClient) {
+        await publicClient.waitForTransactionReceipt({ hash });
+      }
+
+      const res = await fetch("/api/collectors/record-transfer", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ txHash: hash, tokenId: record.tokenId }),
+      });
+      if (!res.ok) {
+        throw new Error(`Cache update failed (${res.status})`);
+      }
+
+      onTransferComplete(record, orbWalletAddress);
+      setTransferStatus("success");
+      setTransferMessage("Sent to your Lens profile wallet.");
+    } catch (err) {
+      const raw = err instanceof Error ? err.message : String(err);
+      const rejected = /rejected|denied|cancel/i.test(raw);
+      setTransferStatus(rejected ? "idle" : "error");
+      setTransferMessage(rejected ? "Transfer cancelled." : raw);
     }
   };
 
@@ -144,9 +260,31 @@ export function CollectorModal({ record, onClose }: CollectorModalProps) {
               </div>
               {mintedAt ? (
                 <div className="row">
-                  <span className="k">MINTED</span>
+                  <span className="k">METADATA DATE</span>
                   <span className="v">{mintedAt}</span>
                 </div>
+              ) : null}
+              {cachedMintedAt ? (
+                <div className="row">
+                  <span className="k">MINTED</span>
+                  <span className="v">{cachedMintedAt}</span>
+                </div>
+              ) : null}
+              {record.mint ? (
+                <>
+                  <div className="row">
+                    <span className="k">MINT TX</span>
+                    <span className="v cwall-modal__address">
+                      <a href={lenscanTxUrl(record.mint.transactionHash)} target="_blank" rel="noopener noreferrer">
+                        {record.mint.transactionHash}
+                      </a>
+                    </span>
+                  </div>
+                  <div className="row">
+                    <span className="k">MINT BLOCK</span>
+                    <span className="v">#{record.mint.blockNumber}</span>
+                  </div>
+                </>
               ) : null}
               {metadata ? (
                 <div className="row">
@@ -192,6 +330,27 @@ export function CollectorModal({ record, onClose }: CollectorModalProps) {
             ) : null}
 
             <div className="cwall-modal__cta">
+              {isYours ? (
+                <>
+                  <button
+                    type="button"
+                    className="dm__cta-btn cwall-modal__replay"
+                    onClick={handleReplay}
+                  >
+                    REPLAY ANIMATION
+                    <span className="dm__cta-arr"></span>
+                  </button>
+                  <button
+                    type="button"
+                    className="dm__cta-btn cwall-modal__transfer"
+                    onClick={handleTransferToOrb}
+                    disabled={transferBusy || alreadyInOrbWallet}
+                  >
+                    {transferBusy ? "SENDING..." : transferLabel}
+                    <span className="dm__cta-arr"></span>
+                  </button>
+                </>
+              ) : null}
               <a
                 className="dm__cta-btn"
                 href={lenscanTokenUrl(CONTRACT, record.tokenId)}
@@ -202,6 +361,11 @@ export function CollectorModal({ record, onClose }: CollectorModalProps) {
                 <span className="dm__cta-arr"></span>
               </a>
             </div>
+            {transferMessage ? (
+              <div className={`cwall-modal__transfer-note cwall-modal__transfer-note--${transferStatus}`}>
+                {transferMessage}
+              </div>
+            ) : null}
           </div>
         </div>
       </motion.div>

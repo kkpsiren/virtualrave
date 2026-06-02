@@ -5,20 +5,29 @@ import { AnimatePresence } from "framer-motion";
 import type { CollectorRecord, CollectorsResponse } from "@/lib/collectors";
 import { CollectorTile } from "./CollectorTile";
 import { CollectorModal } from "./CollectorModal";
+import { MintCeremony, type CeremonyAct, type CeremonyContext } from "./mint/MintCeremony";
+import type { OrbSession } from "./OrbLoginPanel";
 
 interface CollectorsWallProps {
   mintTick?: number;
+  orbSession: OrbSession | null;
+  onConnect: () => void;
 }
 
 type Status = "idle" | "loading" | "success" | "error";
 
-export function CollectorsWall({ mintTick = 0 }: CollectorsWallProps) {
+export function CollectorsWall({ mintTick = 0, orbSession, onConnect }: CollectorsWallProps) {
   const { address } = useAccount();
   const [status, setStatus] = useState<Status>("idle");
   const [data, setData] = useState<CollectorsResponse | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [yoursOnly, setYoursOnly] = useState(false);
   const [active, setActive] = useState<CollectorRecord | null>(null);
+  const [replay, setReplay] = useState<{
+    record: CollectorRecord;
+    buttonRect: DOMRect | null;
+  } | null>(null);
+  const [replayAct, setReplayAct] = useState<CeremonyAct>(0);
   const firstMount = useRef(true);
   const dataRef = useRef<CollectorsResponse | null>(null);
 
@@ -76,6 +85,55 @@ export function CollectorsWall({ mintTick = 0 }: CollectorsWallProps) {
 
   const ownerEq = (a: string, b: string | null) =>
     b !== null && a.toLowerCase() === b;
+
+  const handleTransferComplete = useCallback((record: CollectorRecord, nextOwner: string) => {
+    setData((current) => {
+      if (!current) return current;
+      return {
+        ...current,
+        collectors: current.collectors.map((collector) =>
+          collector.tokenId === record.tokenId
+            ? { ...collector, owner: nextOwner as CollectorRecord["owner"] }
+            : collector,
+        ),
+      };
+    });
+    setActive((current) =>
+      current?.tokenId === record.tokenId
+        ? { ...current, owner: nextOwner as CollectorRecord["owner"] }
+        : current,
+    );
+  }, []);
+
+  useEffect(() => {
+    if (!replay) return;
+
+    setReplayAct(0);
+    const decryptId = window.setTimeout(() => setReplayAct(1), 1200);
+    const confirmId = window.setTimeout(() => setReplayAct(2), 7000);
+    const dropId = window.setTimeout(() => setReplayAct(3), 9600);
+    const ticketId = window.setTimeout(() => setReplayAct(4), 11400);
+
+    return () => {
+      window.clearTimeout(decryptId);
+      window.clearTimeout(confirmId);
+      window.clearTimeout(dropId);
+      window.clearTimeout(ticketId);
+    };
+  }, [replay]);
+
+  const replayCtx: CeremonyContext | null = replay
+    ? {
+        edition: replay.record.metadata?.edition ?? replay.record.tokenId + 1,
+        wallet: replay.record.mint?.to ?? replay.record.owner,
+        lensHandle: null,
+        lensAddress: null,
+        txHash: replay.record.mint?.transactionHash ?? null,
+        blockNumber: replay.record.mint?.blockNumber ?? null,
+        mintedAt: replay.record.mint?.mintedAt ?? null,
+        errorMessage: null,
+      }
+    : null;
 
   return (
     <section id="collectors" className="cwall">
@@ -174,9 +232,27 @@ export function CollectorsWall({ mintTick = 0 }: CollectorsWallProps) {
 
       <AnimatePresence>
         {active ? (
-          <CollectorModal record={active} onClose={() => setActive(null)} />
+          <CollectorModal
+            record={active}
+            isYours={ownerEq(active.owner, lowerAddress)}
+            orbSession={orbSession}
+            onConnect={onConnect}
+            onReplay={(record, buttonRect) => setReplay({ record, buttonRect })}
+            onTransferComplete={handleTransferComplete}
+            onClose={() => setActive(null)}
+          />
         ) : null}
       </AnimatePresence>
+
+      {replay && replayCtx ? (
+        <MintCeremony
+          open
+          act={replayAct}
+          ctx={replayCtx}
+          buttonRect={replay.buttonRect}
+          onClose={() => setReplay(null)}
+        />
+      ) : null}
     </section>
   );
 }
