@@ -524,10 +524,8 @@ export function ClaimTerminal({ onConnect, orbSession, onMintSuccess }: ClaimTer
             account: orbSession.account,
             userId: orbSession.userId,
             handle: orbSession.handle,
-            authenticationId: orbSession.authenticationId,
             hasAccessToken: Boolean(orbSession.accessToken),
-            processed: orbSession.processed,
-            status: orbSession.status,
+            expiresAt: orbSession.expiresAt,
           }
         : null,
       orbWalletAddress,
@@ -609,10 +607,8 @@ export function ClaimTerminal({ onConnect, orbSession, onMintSuccess }: ClaimTer
               account: orbSession.account,
               userId: orbSession.userId,
               handle: orbSession.handle,
-              authenticationId: orbSession.authenticationId,
               hasAccessToken: Boolean(orbSession.accessToken),
-              processed: orbSession.processed,
-              status: orbSession.status,
+              expiresAt: orbSession.expiresAt,
             }
           : null,
         orbWalletAddress,
@@ -890,9 +886,7 @@ export function ClaimTerminal({ onConnect, orbSession, onMintSuccess }: ClaimTer
     ? `${orbWalletAddress.slice(0, 8)}...${orbWalletAddress.slice(-6)}`
     : orbSession?.account
     ? `${orbSession.account.slice(0, 8)}...${orbSession.account.slice(-6)}`
-    : orbSession?.authenticationId
-      ? `${orbSession.authenticationId.slice(0, 8)}...${orbSession.authenticationId.slice(-6)}`
-      : null;
+    : null;
   const recipientDisplay =
     mintDestination === "orb" && orbDisplay
       ? orbDisplay

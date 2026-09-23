@@ -1,20 +1,18 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import type { QrConnectResult } from "@orbclub/modules/auth/qr";
-import { orbLogin } from "@/lib/orbLogin";
+import { SiteSignInError, signInWithOrb } from "@/lib/orbSiteSignIn";
+import { sessionFromSignIn, type OrbSession } from "@/lib/orbSession";
 
-export type OrbSession = QrConnectResult & {
-  account: string | null;
-  userId: string | null;
-  handle: string | null;
-};
+export type { OrbSession };
 
 interface OrbLoginPanelProps {
   session: OrbSession | null;
   onAuthenticated: (session: OrbSession) => void;
   onLogout: () => void;
   onAuthSuccess?: () => void;
+  /** The previous session ended because its ~10-minute access token expired. */
+  sessionExpired?: boolean;
 }
 
 type OrbStatus = "idle" | "connecting" | "authenticated" | "error";
@@ -24,16 +22,36 @@ function shortValue(value: string) {
 }
 
 function getErrorMessage(error: unknown) {
+  if (error instanceof SiteSignInError) {
+    switch (error.reason) {
+      case "expired":
+        return "QR expired. Tune in again for a new code.";
+      case "provisioning":
+        return "Orb is still setting up sign-in for this site. Try again in a few minutes.";
+      case "invalid":
+        return "Orb returned an invalid sign-in. Try again.";
+      default:
+        return "Sign in with Orb is unavailable right now. Try again.";
+    }
+  }
   if (error instanceof Error && error.message.trim()) return error.message;
   if (typeof error === "string" && error.trim()) return error;
   return "Orb login failed. Try again.";
 }
 
-function getStringField(value: unknown) {
-  return typeof value === "string" && value.trim() ? value : null;
+/** Touch devices can't scan their own screen: offer the Orb app deep link. */
+function usePrefersDeepLink() {
+  const [coarse, setCoarse] = useState(false);
+  useEffect(() => {
+    if (typeof window === "undefined" || !window.matchMedia) return;
+    const media = window.matchMedia("(pointer: coarse)");
+    const update = () => setCoarse(media.matches);
+    update();
+    media.addEventListener?.("change", update);
+    return () => media.removeEventListener?.("change", update);
+  }, []);
+  return coarse;
 }
-
-const orb = orbLogin;
 
 // ----- Encrypted-hex noise (0x202AC1D repeating, with block-glyph glitches) -
 const CIPHER = "0x202AC1D";
@@ -207,11 +225,14 @@ export function OrbLoginPanel({
   onAuthenticated,
   onLogout,
   onAuthSuccess,
+  sessionExpired = false,
 }: OrbLoginPanelProps) {
+  const idleMessage = sessionExpired
+    ? "Orb session expired. Scan again to keep collecting."
+    : "Tune in. Scan with Orb to collect on your Lens profile.";
+  const prefersDeepLink = usePrefersDeepLink();
   const [status, setStatus] = useState<OrbStatus>(session ? "authenticated" : "idle");
-  const [message, setMessage] = useState(
-    session ? "Orb session ready." : "Tune in. Scan with Orb to collect on your Lens profile."
-  );
+  const [message, setMessage] = useState(session ? "Orb session ready." : idleMessage);
   const [qrCode, setQrCode] = useState<string | null>(null);
   const [deepLink, setDeepLink] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -235,10 +256,10 @@ export function OrbLoginPanel({
       setError(null);
     } else if (status === "authenticated") {
       setStatus("idle");
-      setMessage("Tune in. Scan with Orb to collect on your Lens profile.");
+      setMessage(idleMessage);
       setJustAuthed(false);
     }
-  }, [session, status]);
+  }, [session, status, idleMessage]);
 
   useEffect(() => {
     return () => {
@@ -259,12 +280,14 @@ export function OrbLoginPanel({
     setError(null);
 
     try {
-      const nextSession = await orb.connectWithQr({
-        credentials: "id_access",
+      const tokens = await signInWithOrb({
         signal: controller.signal,
-        onInit: ({ qrCode: nextQrCode, deepLink: nextDeepLink }) => {
+        onProvisioning: () => {
+          setMessage("Orb is setting up sign-in for this site. First time can take a few minutes...");
+        },
+        onQr: ({ qrCode: nextQrCode, deepLink: nextDeepLink }) => {
           setQrCode(nextQrCode);
-          setDeepLink(nextDeepLink ?? null);
+          setDeepLink(nextDeepLink);
           setMessage("Signal locked. Scan with Orb.");
           audio.click("tune");
         },
@@ -272,12 +295,7 @@ export function OrbLoginPanel({
 
       if (controller.signal.aborted) return;
 
-      onAuthenticated({
-        ...nextSession,
-        account: orb.getAccountFromAccessToken(nextSession.accessToken),
-        userId: getStringField(nextSession.user_id),
-        handle: getStringField(nextSession.handle),
-      });
+      onAuthenticated(sessionFromSignIn(tokens));
       setJustAuthed(true);
       setMessage("Orb connected.");
       audio.click("success");
@@ -300,7 +318,7 @@ export function OrbLoginPanel({
     controllerRef.current?.abort();
     controllerRef.current = null;
     setStatus(session ? "authenticated" : "idle");
-    setMessage(session ? "Orb session ready." : "Tune in. Scan with Orb to collect on your Lens profile.");
+    setMessage(session ? "Orb session ready." : idleMessage);
     setQrCode(null);
     setDeepLink(null);
     setError(null);
@@ -310,9 +328,7 @@ export function OrbLoginPanel({
     ? shortValue(session.userId)
     : session?.account
       ? shortValue(session.account)
-      : session?.authenticationId
-        ? shortValue(session.authenticationId)
-        : null;
+      : null;
 
   const showSuccess = showSuccessPre;
   const noiseHz = useMemo(() => (status === "connecting" ? 22 : 12), [status]);
@@ -392,9 +408,9 @@ export function OrbLoginPanel({
             login with orb
           </button>
         )}
-        {deepLink ? (
+        {deepLink && prefersDeepLink && status === "connecting" ? (
           <a className="orb-login__button orb-login__button--link" href={deepLink}>
-            open orb
+            open orb app
           </a>
         ) : null}
       </div>
