@@ -16,12 +16,12 @@ import { About } from "@/components/About";
 import { Footer } from "@/components/Footer";
 import { WalletModal } from "@/components/WalletModal";
 import type { StudioBridge } from "@/components/Studio";
-import type { OrbSession } from "@/components/OrbLoginPanel";
+import { useOrbSession } from "@/lib/orbSession";
 
 export default function Home() {
   const { address } = useAccount();
   const [showWallet, setShowWallet] = useState(false);
-  const [orbSession, setOrbSession] = useState<OrbSession | null>(null);
+  const { session: orbSession, setSession: setOrbSession, expired: orbSessionExpired } = useOrbSession();
   const [playerOpen, setPlayerOpen] = useState(false);
   const [mintTick, setMintTick] = useState(0);
   const bridgeRef = useRef<StudioBridge | null>(null);
@@ -62,6 +62,7 @@ export default function Home() {
           orbSession={orbSession}
           onOrbAuthenticated={setOrbSession}
           onOrbLogout={() => setOrbSession(null)}
+          orbSessionExpired={orbSessionExpired}
         />
       )}
     </div>

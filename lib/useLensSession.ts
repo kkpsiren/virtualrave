@@ -8,8 +8,8 @@ import {
   type Credentials,
 } from "@lens-protocol/storage";
 import { PublicClient, mainnet, type SessionClient } from "@lens-protocol/client";
-import { orbLogin } from "./orbLogin";
-import type { OrbSession } from "@/components/OrbLoginPanel";
+import { isTokenExpired } from "@orbclub/modules/auth";
+import type { OrbSession } from "./orbSession";
 
 type LensSessionStatus = "idle" | "authenticating" | "authenticated" | "error";
 
@@ -31,8 +31,6 @@ function errorMessage(err: unknown): string {
     return String(err);
   }
 }
-
-const orb = orbLogin;
 
 function getStringField(value: unknown) {
   return typeof value === "string" && value.trim() ? value : null;
@@ -56,25 +54,22 @@ async function resumeSessionFromOrb(orbSession: OrbSession | null): Promise<OrbR
     };
   }
 
-  const synced = await orb.syncSession({
-    accessToken,
-    ...(idToken ? { idToken } : {}),
-  });
-
-  if (!synced?.accessToken || !synced.idToken) {
+  // Browser-site Sign in with Orb issues no refresh token: an expired access
+  // token means the viewer has to scan again.
+  if (!idToken || isTokenExpired(accessToken)) {
     return {
       client: null,
       needsReauth: true,
-      error: "Orb session is missing Lens access or id token.",
+      error: idToken ? "Orb session expired. Scan Orb again." : "Orb session is missing the Lens id token.",
     };
   }
 
   const storage = new InMemoryStorageProvider();
   const stored = await CredentialsStorage.from(storage, "mainnet").set({
-    accessToken: synced.accessToken,
-    idToken: synced.idToken,
-    refreshToken: getStringField(synced.refreshToken) ?? "",
-  } as Credentials);
+    accessToken,
+    idToken,
+    refreshToken: "",
+  } as unknown as Credentials);
 
   if (stored.isErr()) {
     return {
