@@ -7,6 +7,7 @@ interface WalletModalProps {
   orbSession: OrbSession | null;
   onOrbAuthenticated: (session: OrbSession) => void;
   onOrbLogout: () => void;
+  orbSessionExpired?: boolean;
 }
 
 export function WalletModal({
@@ -14,6 +15,7 @@ export function WalletModal({
   orbSession,
   onOrbAuthenticated,
   onOrbLogout,
+  orbSessionExpired = false,
 }: WalletModalProps) {
   const { connect, connectors } = useConnect();
   const isMobile =
@@ -89,6 +91,7 @@ export function WalletModal({
           onAuthenticated={onOrbAuthenticated}
           onLogout={onOrbLogout}
           onAuthSuccess={onClose}
+          sessionExpired={orbSessionExpired}
         />
         <div className="modal__label">
           then choose your wallet. on mobile, walletconnect can hand off to zerion.
